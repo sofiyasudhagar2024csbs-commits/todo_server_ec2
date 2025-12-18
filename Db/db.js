@@ -1,18 +1,13 @@
-//will handle connectivity between express and mongodb
-// for commmonjs => const mongoose = require('mongoose')
-import mongoose from "mongoose";    // modules
-import dotenv from 'dotenv';
+import mongoose from "mongoose";
 
-dotenv.config();  
-
-const connectDB = () =>{
-try{
-    //'mongodb://127.0.0.1:27017/sece_todo'
-    mongoose.connect(process.env.MONGODB_URI);
-     console.log("db has been connected")
-    } catch (err){console.log(err)}
-
-    }
-
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB connected");
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+};
 
 export default connectDB;
